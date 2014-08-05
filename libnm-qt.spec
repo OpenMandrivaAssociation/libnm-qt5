@@ -13,6 +13,7 @@ Group:		System/Libraries
 Url:		https://projects.kde.org/projects/extragear/libs/libnm-qt
 Source0:	ftp://ftp.kde.org/pub/kde/stable/plasma/5.0.0/src/libnm-qt-%{version}.tar.xz
 BuildRequires:	cmake
+BuildRequires:	cmake(ECM)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(ModemManager)
 BuildRequires:	cmake(KF5ModemManagerQt)
