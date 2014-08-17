@@ -5,7 +5,7 @@
 
 Summary:	Qt5-only wrapper for NetworkManager DBus API
 Name:		libnm-qt5
-Version:	5.0.91
+Version:	5.0.92
 Release:	1
 Epoch:		1
 License:	LGPLv2+
