@@ -2,16 +2,17 @@
 %define libname %mklibname KF5NetworkManagerQt %{major}
 %define devname %mklibname -d KF5NetworkManagerQt
 %define debug_package %{nil}
+%define plasmaver %(echo %{version} |cut -d. -f1-3)
 
 Summary:	Qt5-only wrapper for NetworkManager DBus API
 Name:		libnm-qt5
-Version:	5.0.95
+Version:	5.1.0.1
 Release:	1
 Epoch:		1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://projects.kde.org/projects/extragear/libs/libnm-qt
-Source0:	ftp://ftp.kde.org/pub/kde/stable/plasma/5.0.0/src/libnm-qt-%{version}.tar.xz
+Source0:	ftp://ftp.kde.org/pub/kde/stable/plasma/%{plasmaver}/src/libnm-qt-%{version}.tar.xz
 BuildRequires:	cmake
 BuildRequires:	cmake(ECM)
 BuildRequires:	pkgconfig(Qt5Core)
@@ -20,6 +21,7 @@ BuildRequires:	cmake(KF5ModemManagerQt)
 BuildRequires:	pkgconfig(NetworkManager) >= 0.9.8.4
 BuildRequires:	pkgconfig(libnm-glib)
 BuildRequires:	pkgconfig(libnm-util)
+BuildRequires:	ninja
 
 %description
 Qt5 library for NetworkManager.
@@ -61,12 +63,12 @@ that use NetworkManager.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -qn libnm-qt-%{version}
+%setup -qn libnm-qt-%{plasmaver}
 
 %build
-%cmake
-%make
+%cmake -G Ninja
+ninja
 
 %install
-%makeinstall_std -C build
+DESTDIR="%{buildroot}" ninja -C build install
 
