@@ -3,16 +3,17 @@
 %define devname %mklibname -d KF5NetworkManagerQt
 %define debug_package %{nil}
 %define plasmaver %(echo %{version} |cut -d. -f1-3)
+%define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 
 Summary:	Qt5-only wrapper for NetworkManager DBus API
 Name:		libnm-qt5
-Version:	5.1.0.1
+Version:	5.1.1
 Release:	1
 Epoch:		1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://projects.kde.org/projects/extragear/libs/libnm-qt
-Source0:	ftp://ftp.kde.org/pub/kde/stable/plasma/%{plasmaver}/src/libnm-qt-%{version}.tar.xz
+Source0:	ftp://ftp.kde.org/pub/kde/%{stable}/plasma/%{plasmaver}/libnm-qt-%{version}.tar.xz
 BuildRequires:	cmake
 BuildRequires:	cmake(ECM)
 BuildRequires:	pkgconfig(Qt5Core)
