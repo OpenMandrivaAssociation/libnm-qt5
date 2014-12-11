@@ -59,7 +59,7 @@ that use NetworkManager.
 %{_includedir}/KF5/NetworkManagerQt/
 %{_includedir}/KF5/networkmanagerqt_version.h
 %{_libdir}/cmake/KF5NetworkManagerQt
-%{_prefix}/mkspecs/modules/*.pri
+%{_libdir}/qt5/mkspecs/modules/*.pri
 
 #----------------------------------------------------------------------------
 
@@ -67,7 +67,8 @@ that use NetworkManager.
 %setup -qn libnm-qt-%{plasmaver}
 
 %build
-%cmake -G Ninja
+%cmake -G Ninja \
+	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
 ninja
 
 %install
